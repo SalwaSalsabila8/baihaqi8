@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"], input[type="number"], input[type="email"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Transaksi Pembayaran</h1>
+        <form id="paymentForm">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="amount">Jumlah Pembayaran (Rp)</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <label for="method">Metode Pembayaran</label>
+            <select id="method" name="method" required>
+                <option value="credit_card">Kartu Kredit</option>
+                <option value="bank_transfer">Transfer Bank</option>
+                <option value="e_wallet">E-Wallet</option>
+            </select>
+
+            <button type="submit" class="btn">Bayar Sekarang</button>
+        </form>
+
+        <div id="confirmationMessage" style="display: none;">
+            <p>Terima kasih! Pembayaran Anda telah berhasil dilakukan.</p>
+        </div>
+        
+        <div id="errorMessage" class="error" style="display: none;">
+            <p>Gagal melakukan pembayaran. Pastikan semua informasi sudah benar.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Menghindari form submit default
+
+            // Ambil data dari form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const amount = document.getElementById('amount').value;
+            const method = document.getElementById('method').value;
+
+            // Validasi input
+            if (name && email && amount && method) {
+                // Jika data valid, tampilkan pesan konfirmasi
+                document.getElementById('confirmationMessage').style.display = 'block';
+                document.getElementById('paymentForm').reset(); // Reset form setelah berhasil
+                document.getElementById('errorMessage').style.display = 'none';
+            } else {
+                // Jika data tidak valid, tampilkan pesan error
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>

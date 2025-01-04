@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .navbar .logo img {
+            height: 40px;
+        }
+        .navbar .search-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar .search-bar input[type="text"] {
+            width: 50%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .navbar .actions {
+            display: flex;
+            gap: 15px;
+        }
+        .navbar .actions a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+        }
+        .slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            height: 300px;
+            flex-shrink: 0;
+        }
+        .navigation {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .navigation button {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #ccc;
+            color: #333;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .navigation button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            transform: scale(1.1);
+        }
+        .list-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            
+        }
+        .list-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .list-item button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .list-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="l.png" alt="Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="actions">
+                <a href="#home">Homepage</a>
+                <a href="porfil.html">Profile</a>
+                <a href="transaksi.html">Transactions</a>
+            </div>
+        </div>
+    </header>
+    <div class="slider">
+        <div class="slides" id="slides">
+            <img src="1.jpg" alt="Slide 1">
+            <img src="1.jpg" alt="Slide 2">
+            <img src="1.jpg" alt="Slide 3">
+            <img src="1.jpg" alt="Slide 4">
+        </div>
+        <div class="navigation">
+            <button onclick="moveSlide(-1)">&#8249;</button>
+            <button onclick="moveSlide(1)">&#8250;</button>
+        </div>
+    </div>
+    <div class="list-section">
+        <div class="list-item">
+            <h3>Pinjaman 1</h3>
+            <p>Cicilan 3 Bulan</p>
+            <button>View More</button>
+        </div>
+        <div class="list-item">
+            <h3>Pinjaman 2</h3>
+            <p>Cicilan 6 Bulan</p>
+            <button>View More</button>
+        </div>
+        <div class="list-item">
+            <h3>Pinjaman 3</h3>
+            <p>Cicilan 9 Bulan</p>
+            <button>View More</button>
+        </div>
+        <div class="list-item">
+            <h3>Pinjaman 4</h3>
+            <p>Cicilan 12 Bulan</p>
+            <button>View More</button>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 0;
+        function moveSlide(direction) {
+            const slides = document.getElementById('slides');
+            const totalSlides = slides.children.length;
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    </script>
+</body>
+</html>
